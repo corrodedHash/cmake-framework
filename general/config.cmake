@@ -21,7 +21,7 @@ else()
 
   target_include_directories(GeneralConfig INTERFACE ${CMAKE_SOURCE_DIR}/include)
 
-  if(${PROJECT_NAME}_COVERAGE)
+  if(${PROJECT_NAME}_COVERAGE_LLVM)
     target_compile_options(GeneralConfig INTERFACE
       "-fprofile-instr-generate" "-fcoverage-mapping")
     target_link_options(GeneralConfig INTERFACE
@@ -29,11 +29,11 @@ else()
 
   endif()
 
-  if(${PROJECT_NAME}_GCOV)
+  if(${PROJECT_NAME}_COVERAGE_GCOV)
     target_compile_options(GeneralConfig INTERFACE
-      "-fprofile-arcs" "-ftest-coverage")
+      "--coverage")
     target_link_options(GeneralConfig INTERFACE
-      "-fprofile-arcs" "-ftest-coverage")
+      "--coverage")
   endif()
 
   if(${PROJECT_NAME}_USE_LLD)

@@ -21,7 +21,7 @@ if (NOT MSVC)
       "-fsanitize-memory-track-origins")
   endif()
 
-  list(LENGTH ${SANITIZER_LIST} EXCLUSIVE_SANITIZER_COUNT)
+  list(LENGTH "${SANITIZER_LIST}" EXCLUSIVE_SANITIZER_COUNT)
   if(EXCLUSIVE_SANITIZER_COUNT GREATER 1)
     message(FATAL_ERROR "Can only have one of Address-, Memory- or ThreadSanitizer")
   endif()
