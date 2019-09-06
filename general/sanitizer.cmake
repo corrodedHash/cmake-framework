@@ -10,10 +10,6 @@ if (NOT MSVC)
       "-fno-optimize-sibling-calls")
   endif()
 
-  if(${${PROJECT_NAME}_SANITIZER_UB})
-    list(APPEND SANITIZER_LIST "undefined")
-  endif()
-
   if(${${PROJECT_NAME}_SANITIZER_MEMORY})
     include("external/MsanLibcxx")
     target_link_libraries(GeneralConfig INTERFACE libcxx::msanlibcxx)
@@ -23,6 +19,15 @@ if (NOT MSVC)
       "-fsanitize-memory-track-origins")
     target_link_options(GeneralConfig INTERFACE
       "-fsanitize-memory-track-origins")
+  endif()
+
+  list(LENGTH ${SANITIZER_LIST} EXCLUSIVE_SANITIZER_COUNT)
+  if(EXCLUSIVE_SANITIZER_COUNT GREATER 1)
+    message(FATAL_ERROR "Can only have one of Address-, Memory- or ThreadSanitizer")
+  endif()
+
+  if(${${PROJECT_NAME}_SANITIZER_UB})
+    list(APPEND SANITIZER_LIST "undefined")
   endif()
 
   if (${${PROJECT_NAME}_SANITIZER_CFI})
