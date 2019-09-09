@@ -1,3 +1,7 @@
+if (NOT ${PROJECT_NAME}_BUILD_TESTS)
+  return
+endif()
+
 include( "external/Catch2" )
 
 add_executable(testing)

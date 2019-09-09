@@ -1,3 +1,7 @@
+if (${PROJECT_NAME}_BUILD_FUZZER)
+  return 
+endif()
+
 add_executable(fuzzer)
 target_link_libraries(fuzzer PRIVATE GeneralConfig FuzzerSanitizerConfig)
 
