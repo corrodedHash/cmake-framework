@@ -1,5 +1,5 @@
 if (NOT ${PROJECT_NAME}_BUILD_BENCHMARKS)
-  return
+  return()
 endif()
 
 add_executable(benchmarks)

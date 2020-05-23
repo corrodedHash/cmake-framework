@@ -1,5 +1,5 @@
 if (NOT ${PROJECT_NAME}_BUILD_TESTS)
-  return
+  return()
 endif()
 
 include( "external/Catch2" )
