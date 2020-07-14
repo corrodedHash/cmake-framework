@@ -54,6 +54,8 @@ if (NOT MSVC)
   add_library(FuzzerSanitizerConfig INTERFACE)
   target_link_libraries(FuzzerSanitizerConfig INTERFACE GeneralConfig)
 
+  target_link_libraries(GeneralConfig INTERFACE SanitizerConfig)
+
   list(REMOVE_ITEM SANITIZER_LIST "fuzzer-no-link")
   list(APPEND SANITIZER_LIST "fuzzer")
   string(REPLACE ";" "," SANITIZER_STRING "${SANITIZER_LIST}" )
